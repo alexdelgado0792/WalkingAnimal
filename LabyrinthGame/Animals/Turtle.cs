@@ -1,12 +1,11 @@
-namespace WalkingTurtle.Animals
+namespace LabyrinthGame.Animals
 {
     public class Turtle : Species
     {
-        public Turtle(int x = 20, int y = 20)
+        public Turtle(int x = 20, int y = 15)
         {
-            MaxVerticalVector = x;
-            MaxHorizontalVector = y;
-            Matrix = new string[x, y];
+            MaxVerticalVector = y;
+            MaxHorizontalVector = x;
             Steps = 1;
             InitializeMatrix();
         }

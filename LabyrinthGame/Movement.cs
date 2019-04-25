@@ -1,4 +1,4 @@
-namespace WalkingTurtle
+namespace LabyrinthGame
 {
     public enum Movement
     {

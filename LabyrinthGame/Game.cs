@@ -1,8 +1,8 @@
+using LabyrinthGame.Animals;
 using System;
 using System.Linq;
-using WalkingTurtle.Animals;
 
-namespace WalkingTurtle
+namespace LabyrinthGame
 {
     public class Game
     {

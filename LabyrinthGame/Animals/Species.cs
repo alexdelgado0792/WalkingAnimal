@@ -1,6 +1,6 @@
 using System;
 
-namespace WalkingTurtle.Animals
+namespace LabyrinthGame.Animals
 {
     public abstract class Species
     {
@@ -21,8 +21,8 @@ namespace WalkingTurtle.Animals
         //Maximun location in Horizontal vector
         protected int MaxHorizontalVector { get; set; }
 
-        private string Mark = "*";
-        private string ExitMark = "#";
+        private readonly string Mark = "*";
+        private readonly string ExitMark = "#";
 
         protected int Steps;
 
@@ -65,7 +65,7 @@ namespace WalkingTurtle.Animals
 
         public virtual void PrintSpace_2D()
         {
-            PrintMargin(Matrix.GetLength(0));
+            PrintMargin(Matrix.GetLength(1));
 
             for (int x = 0; x < Matrix.GetLength(0); x++)
             {
@@ -76,7 +76,7 @@ namespace WalkingTurtle.Animals
                 Console.WriteLine();
             }
 
-            PrintMargin(Matrix.GetLength(0));
+            PrintMargin(Matrix.GetLength(1));
 
             Console.WriteLine();
         }
@@ -131,11 +131,13 @@ namespace WalkingTurtle.Animals
 
         public bool Winner()
         {
-            return Matrix[HorizontalVector, VerticalVector] == ExitMark;
+            return Matrix[VerticalVector, HorizontalVector] == ExitMark;
         }
 
         protected void InitializeMatrix()
         {
+            Matrix = new string[MaxVerticalVector, MaxHorizontalVector];
+
             for (int i = 0; i < Matrix.GetLength(0); i++)
             {
                 for (int j = 0; j < Matrix.GetLength(1); j++)
@@ -148,7 +150,7 @@ namespace WalkingTurtle.Animals
             Matrix[0, 0] = Mark;
 
             //Exit of the labyrinth
-            //Matrix[MaxHorizontalVector - 1, MaxVerticalVector - 1] = "#";
+            Matrix[MaxVerticalVector - 1, MaxHorizontalVector - 1] = ExitMark;
 
         }
     }
