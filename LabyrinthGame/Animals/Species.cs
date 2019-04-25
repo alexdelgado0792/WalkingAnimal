@@ -30,6 +30,8 @@ namespace LabyrinthGame.Animals
 
         #endregion Properties
 
+        #region Moves
+
         private void Right()
         {
             HorizontalVector += Steps;
@@ -57,6 +59,8 @@ namespace LabyrinthGame.Animals
             LabyrinthExit();
             Matrix[VerticalVector, HorizontalVector] = Mark;
         }
+
+        #endregion
 
         public bool Move(Movement movement)
         {
@@ -135,7 +139,7 @@ namespace LabyrinthGame.Animals
             return true;
         }
 
-        public void LabyrinthExit()
+        private void LabyrinthExit()
         {
             Winner =  Matrix[VerticalVector, HorizontalVector] == ExitMark;
         }
