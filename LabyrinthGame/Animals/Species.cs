@@ -26,7 +26,7 @@ namespace LabyrinthGame.Animals
         private readonly string Mark = "*";
         private readonly string ExitMark = "#";
 
-        protected int Steps;
+        private readonly int Steps = 1;
 
         #endregion Properties
 
