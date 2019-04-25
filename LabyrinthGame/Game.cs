@@ -40,33 +40,46 @@ namespace LabyrinthGame
         public static void Play(Species animal)
         {
             Console.Clear();
-            animal.PrintSpace_2D();
-            string option = Menu();
 
-            if (!option.All(char.IsDigit))
+            if (animal.Winner)
             {
-                Console.WriteLine("Not Valid option. Try Again.");
-                Play(animal);
-            }
+                Console.WriteLine("You Win!!!!!!");
 
-            var move = (Movement)Convert.ToInt32(option);
-            if (!Enum.IsDefined(typeof(Movement), move))
-            {
-                Console.WriteLine("Not Valid option. Try Again.");
-                Play(animal);
-            }
-
-            if (animal.Move(move))
-            {
-                Play(animal);
-
-            }
-            else
-            {
                 if (ContinuePlaying())
                 {
                     Console.Clear();
                     Play(Start());
+                }
+            }
+            else
+            {
+                animal.PrintSpace_2D();
+                string option = Menu();
+
+                if (!option.All(char.IsDigit))
+                {
+                    Console.WriteLine("Not Valid option. Try Again.");
+                    Play(animal);
+                }
+
+                var move = (Movement)Convert.ToInt32(option);
+                if (!Enum.IsDefined(typeof(Movement), move))
+                {
+                    Console.WriteLine("Not Valid option. Try Again.");
+                    Play(animal);
+                }
+
+                if (animal.Move(move))
+                {
+                    Play(animal);
+                }
+                else
+                {
+                    if (ContinuePlaying())
+                    {
+                        Console.Clear();
+                        Play(Start());
+                    }
                 }
             }
         }

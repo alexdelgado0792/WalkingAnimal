@@ -21,6 +21,8 @@ namespace LabyrinthGame.Animals
         //Maximun location in Horizontal vector
         protected int MaxHorizontalVector { get; set; }
 
+        public bool Winner;
+
         private readonly string Mark = "*";
         private readonly string ExitMark = "#";
 
@@ -31,24 +33,28 @@ namespace LabyrinthGame.Animals
         private void Right()
         {
             HorizontalVector += Steps;
+            LabyrinthExit();
             Matrix[VerticalVector, HorizontalVector] = Mark;
         }
 
         private void Left()
         {
             HorizontalVector -= Steps;
+            LabyrinthExit();
             Matrix[VerticalVector, HorizontalVector] = Mark;
         }
 
         private void Up()
         {
             VerticalVector -= Steps;
+            LabyrinthExit();
             Matrix[VerticalVector, HorizontalVector] = Mark;
         }
 
         private void Down()
         {
             VerticalVector += Steps;
+            LabyrinthExit();
             Matrix[VerticalVector, HorizontalVector] = Mark;
         }
 
@@ -129,9 +135,9 @@ namespace LabyrinthGame.Animals
             return true;
         }
 
-        public bool Winner()
+        public void LabyrinthExit()
         {
-            return Matrix[VerticalVector, HorizontalVector] == ExitMark;
+            Winner =  Matrix[VerticalVector, HorizontalVector] == ExitMark;
         }
 
         protected void InitializeMatrix()
@@ -151,7 +157,6 @@ namespace LabyrinthGame.Animals
 
             //Exit of the labyrinth
             Matrix[MaxVerticalVector - 1, MaxHorizontalVector - 1] = ExitMark;
-
         }
     }
 }
